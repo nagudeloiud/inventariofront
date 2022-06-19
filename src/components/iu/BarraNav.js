@@ -43,13 +43,13 @@ export default function BarraNav() {
                     className="nav-item nav-link"
                     to='/inventarios'
                 >
-                    Inventarios
-                </NavLink>
+                  Inventario
+                </NavLink>   
 
-
-            <li className="nav-item">
-                <a className="nav-link disabled">Inventario</a>
-            </li>
+                <li className="nav-item">
+                    <a className="nav-link disabled">Acerca De:</a>
+                </li>
+                
             </ul>
         </div>
         </div>

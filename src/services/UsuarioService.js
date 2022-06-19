@@ -1,7 +1,7 @@
 import Usuario from "../components/usuario/Usuario";
 import { axiosConfig } from "../config/axiosConfig"
 
-export const obtenerTodos = () => {
+export const obtenerTodosUsuarios = () => {
   return axiosConfig.get(
     '/usuarios'
     //process.env.REACT_APP_BASE_URL+'/estados'

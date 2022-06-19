@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import { obtenerTodos, guardar } from '../../services/UsuarioService';
+import { obtenerTodosUsuarios, guardar } from '../../services/UsuarioService';
 
 export default function Usuario() {
 
@@ -16,7 +16,7 @@ export default function Usuario() {
 
   useEffect(() =>{
     const getUsuarios = () => {
-      obtenerTodos().
+      obtenerTodosUsuarios().
       then(r => {
          console.log(r)
          setUsuarios(r.data)
