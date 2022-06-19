@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import { obtenerTodos, guardar, editarPorId } from '../../services/EstadoService';
+import { obtenerTodos, guardar } from '../../services/EstadoService';
 
 export default function Estado() {
 
@@ -83,7 +83,8 @@ export default function Estado() {
         <button 
           type="button" 
           className="btn btn-outline-primary"
-          data-bs-toggle="modal" data-bs-target="#exampleModal"          
+          data-bs-toggle="modal" 
+          data-bs-target="#exampleModal"          
           >
           <i className="fa-solid fa-plus"></i>
             Agregar            
@@ -115,7 +116,13 @@ export default function Estado() {
                     <td>
                       <button 
                         type="button" 
-                        className="btn btn-outline-success">                    
+                        className="btn btn-outline-success"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#exampleModal"     
+                        data = {est._id}
+                        
+
+                       >                                            
                         <i className="fa-solid fa-pen-to-square"></i>
                         -
                       </button>
@@ -153,7 +160,7 @@ export default function Estado() {
             <div className="modal-body">
               <form onSubmit={add}>
                 <div className="mb-3">
-                  <label className="col-form-label">Nombre:</label>
+                  <label htmlFor="recipient-name" className="col-form-label">Nombre:</label>
                   <input 
                     required 
                     value={estado.nombre} 
@@ -164,7 +171,7 @@ export default function Estado() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label className="col-form-label">Estado:</label>
+                  <label htmlFor="message-text" className="col-form-label">Estado:</label>
                   <select 
                     required 
                     className="form-select" 
