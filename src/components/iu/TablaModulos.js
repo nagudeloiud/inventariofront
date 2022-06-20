@@ -34,20 +34,21 @@ export default function TablaModulos({items, openEditById}) {
                 <td>{item.fechaActualizacion}</td>
                 <td>
                   <button 
-                    type="button" 
-                    className="btn btn-outline-success"
-                    data-bs-toggle="modal" 
-                    data-bs-target="#exampleModal"
-                    data={item._id}
-                    onClick={openEditById}
-                  >
+                      type="button" 
+                      className="btn btn-outline-success"
+                      data-bs-toggle="modal" 
+                      data-bs-target="#exampleModal"
+                      data={item._id}
+                      onClick={openEditById}
+                    >
                     <i className="fa-solid fa-pen-to-square" data={item._id}
                     onClick={openEditById}></i>
                   </button>
+
                   <button 
                     type="button" 
                     className="btn btn-outline-danger"
-                  >
+                    >
                     <i className="fa-solid fa-trash"></i>
                    
                   </button>

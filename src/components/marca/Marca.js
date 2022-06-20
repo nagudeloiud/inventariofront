@@ -1,17 +1,21 @@
 import React, { useEffect, useState} from 'react'
-import { obtenerTodos, guardar } from '../../services/MarcaService';
+import { obtenerTodos, guardar, editarPorId } from '../../services/MarcaService';
+import Modal from './Modal';
+
 
 export default function Marca() {
-
-  const [marcas, setMarcas] = useState([]);   
+  const [marcas, setMarcas] = useState([]); 
 
   const [marca, setMarca] = useState({
     nombre: '',
     estado: false
   });   
+
   const [error, setError] = useState(false);
 
+  const [hidden] = useState('hidden');
 
+  const [loading, setLoading] = useState(false);
 
 
   useEffect(() =>{
@@ -36,32 +40,72 @@ export default function Marca() {
     })
   }
   
-
   const add = e => {
+    setLoading(true);
     e.preventDefault();
     console.log(marca)
-    guardarMarca();
+    if(marca._id){
+      editarMarca();
+    }else{
+      guardarMarca();
+    }
+    resetMarca();
   }; 
+
+
 
   const guardarMarca = () => { 
     guardar(marca)
     .then( r =>{
       setMarcas([...marcas, r.data])
       changeError(false);  
+      setLoading(false);
     }).catch(e =>{
       console.log(e);
-      changeError(true);  
+      changeError(true); 
+      setLoading(false); 
     }) 
   };
-
-  
-  const changeError = e => {
-    setError(e);
-  }
 
   const closeModal = () => {
     resetMarca()
     changeError(false)
+  }
+
+  const changeError = e => {
+    setError(e);
+  }
+
+  const openEditById = e => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      const id = e.target.getAttribute('data');
+      console.log(id)
+      const marcaFilter = marcas.filter(marc => marc._id == id)[0];
+      setMarca({
+        ...marcaFilter
+      });
+    }, 500)
+  }
+
+  const editarMarca = () => {
+    editarPorId(marca._id, marca)
+    .then(r => {
+      console.log(r.data._id)
+      const id = r.data._id;
+      if(!r.data.estado){
+        const activos = marcas.filter(marc => marc._id !== id);
+        setMarcas(activos);
+      }
+      changeError(false)
+      setLoading(false);
+    }).catch(e => {
+      console.log(e);
+      changeError(true);
+      setLoading(false);
+    })
   }
 
   const resetMarca = () => {
@@ -79,8 +123,9 @@ export default function Marca() {
 
   return (
     <div className="container">      
-      <div className='table-responsive'>
+
         <button 
+          onClick={resetMarca}
           type="button" 
           className="btn btn-outline-primary"
           data-bs-toggle="modal" 
@@ -90,6 +135,9 @@ export default function Marca() {
             Agregar            
          </button>
 
+
+
+       <div className='table-responsive'>
         <table className="table">
           <thead>
             <tr>
@@ -120,18 +168,18 @@ export default function Marca() {
                         data-bs-toggle="modal" 
                         data-bs-target="#exampleModal"     
                         data = {item._id}
-                        
-
+                        onClick={openEditById}
                        >                                            
-                        <i className="fa-solid fa-pen-to-square"></i>
-                        -
+                        <i className="fa-solid fa-pen-to-square"  data={item._id}
+                        onClick={openEditById}></i>
                       </button>
+
                       <button 
                         type="button" 
                         className="btn btn-outline-danger">             
-                        <i className="fa-solid fa-trash"></i>
-                        -
+                        <i className="fa-solid fa-trash"></i>                        
                       </button>
+                      
                     </td>    
                     <td></td>
                   </tr>  
@@ -142,68 +190,15 @@ export default function Marca() {
         </table>
       </div>     
 
-
-
-      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Nuevo Marca</h5>
-              <button 
-                type="button" 
-                className="btn-close" 
-                data-bs-dismiss="modal" 
-                aria-label="Close" 
-                onClick={closeModal}>
-              </button>
-            </div>
-            <div className="modal-body">
-              <form onSubmit={add}>
-                <div className="mb-3">
-                  <label htmlFor="recipient-name" className="col-form-label">Nombre:</label>
-                  <input 
-                    required 
-                    value={marca.nombre} 
-                    name = "nombre" 
-                    type="text" 
-                    className="form-control" 
-                    onChange={changeMarca}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="message-text" className="col-form-label">Marca:</label>
-                  <select 
-                    required 
-                    className="form-select" 
-                    aria-label="Default select example" 
-                    value={marca.estado} 
-                    name="estado" 
-                    onChange={changeMarca}>
-                    <option value={true}>Activo</option>
-                    <option value={false}>Inactivo</option>                    
-                  </select>                  
-                                  </div>
-                <div className="modal-footer">                   
-                  <div className={error ? 'alert alert-danger': 'd-none'} role="alert">
-                    ¡Ha ocurrido un error al guardar!
-                  </div>
-                  <button 
-                    type="button" 
-                    className="btn btn-secondary" 
-                    data-bs-dismiss="modal"
-                    onClick={closeModal}
-                  >
-                    Close
-                  </button>
-                  <button type="submit" className="btn btn-primary">Guardar</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
+      <Modal 
+        marca={marca}
+        loading={loading}
+        closeModal={closeModal}
+        hidden={hidden}
+        changeMarca={changeMarca}
+        error={error}
+        add={add}
+      /> 
 
 
 

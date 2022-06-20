@@ -1,12 +1,12 @@
 import React, { useEffect, useState} from 'react'
-import { obtenerTodos, guardar } from '../../services/EstadoService';
+import { obtenerTodos, guardar, editarPorId } from '../../services/EstadoService';
 import TablaModulos from '../iu/TablaModulos';
 import Modal from './Modal';
 
 export default function Estado() {
 
-  const [estados, setEstados] = useState([]);  
-  const [estado, setEstado] = useState({
+  const [estados, setEstados] = useState([]); //para obtener todos 
+  const [estado, setEstado] = useState({      //para guardar o editar un estado
     _id: '',
     nombre: '',
     estado: true
@@ -29,7 +29,6 @@ export default function Estado() {
     }
     getEstados();
   },[]); 
-
 
   const changeEstado =  e => {
     e.preventDefault();
@@ -65,14 +64,13 @@ export default function Estado() {
     }) 
   };
 
-  
-  const changeError = e => {
-    setError(e);
-  }
-
   const closeModal = () => {
     resetEstado()
     changeError(false)
+  }
+  
+  const changeError = e => {
+    setError(e);
   }
 
   const openEditById = e => {
@@ -114,8 +112,6 @@ export default function Estado() {
       estado: true
     })
   }
-
- 
 
 
   return (
