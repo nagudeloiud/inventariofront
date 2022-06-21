@@ -20,6 +20,7 @@ export default function ModalTipoEquipo({tipoequipo, loading, closeModal, hidden
   >
     <div className="modal-dialog">
       <div className="modal-content">
+        
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">{tipoequipo._id ? 'Editar TipoEquipo': 'Nuevo TipoEquipo'}</h5>
           {
@@ -37,6 +38,7 @@ export default function ModalTipoEquipo({tipoequipo, loading, closeModal, hidden
           >
           </button>
         </div>
+
         <div className="modal-body">
           <form onSubmit={add}>
             <input type={hidden} name="_id" value={tipoequipo._id}></input>
@@ -66,7 +68,7 @@ export default function ModalTipoEquipo({tipoequipo, loading, closeModal, hidden
                       {usuarios.map(u => {
                           tipoequipo.usuario = u;
                           return (                                
-                              <option key={u._id} value={u._id}> {u.nombre}</option>
+                              <option key={u._id} value={u._id} > {u.nombre}</option>
                           );
                       })}
                   </select>
@@ -90,29 +92,29 @@ export default function ModalTipoEquipo({tipoequipo, loading, closeModal, hidden
               </select>
             </div>
             <div className="modal-footer">
-            <div className={error ? 'alert alert-danger': 'd-none'} role="alert">
-              ¡Ha ocurrido un error!
-            </div>
-              <button 
-                type="button" 
-                className="btn btn-secondary" data-bs-dismiss="modal"
-                onClick={closeModal}
-              >
-                Close
-              </button>
-              {
-                loading ? (<button className="btn btn-primary" type="button" disabled>
-                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Loading...
-                  </button>) : (<button type="submit" className="btn btn-primary">
-                    GuardarTipoEquipo
-                  </button>)
-              }
-            </div>
+                <div className={error ? 'alert alert-danger': 'd-none'} role="alert">
+                  ¡Ha ocurrido un error!
+                </div>
+                <button 
+                  type="button" 
+                  className="btn btn-secondary" data-bs-dismiss="modal"
+                  onClick={closeModal}
+                >
+                  Close
+                </button>
+                {
+                  loading ? (<button className="btn btn-primary" type="button" disabled>
+                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+                    </button>) : (<button type="submit" className="btn btn-primary">
+                      GuardarTipoEquipo
+                    </button>)
+                }
+             </div>
           </form>
             </div>
         </div>
-        </div>
+      </div>
     </div>
   )
 }

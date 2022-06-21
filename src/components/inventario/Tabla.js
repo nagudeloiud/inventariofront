@@ -33,7 +33,7 @@ export default function Tabla({inventarios = []}) {
                             <td>{inv.precio}</td>
                             <td>{inv.usuario.nombre}</td>
                             <td>{inv.marca.nombre}</td>
-                            <td>{inv.estado}</td>
+                            <td>{inv.estado.nombre}</td>
                             <td>{inv.tipoEquipo.nombre}</td>
                             <td>
                             <button 
@@ -42,7 +42,7 @@ export default function Tabla({inventarios = []}) {
                                 data-bs-toggle="modal" 
                                 data-bs-target="#exampleModal"
                                 data={inv._id}
-                            >
+                                                            >
                                 <i className="fa-solid fa-pen-to-square" data={inv._id}
                                 ></i>
 

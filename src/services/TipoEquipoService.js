@@ -3,7 +3,8 @@ import { axiosConfig } from "../config/axiosConfig"
 
 export const obtenerTodos = () => {
   return axiosConfig.get(
-    '/tiposequipo'
+    '/tiposequipo/user-activo' // Solo tipos de equipo activos
+    //'/tiposequipo'//salian todos incluso los inactivos
     //process.env.REACT_APP_BASE_URL+'/estados'
   );
 }

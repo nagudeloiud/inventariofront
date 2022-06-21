@@ -4,17 +4,15 @@ import { obtenerTodosUsuarios } from '../../services/UsuarioService';
 import ModalTipoEquipo from './ModalTipoEquipo';
 
 export default function TipoEquipo() {
-  const [usuarios, setUsuarios] = useState([]);
-
   const [tipoequipos, setTipoEquipos] = useState([]);  
-
   const [tipoequipo, setTipoEquipo] = useState({
-    nombre: '',
+    nombre: "",
     estado: false,
-    usuario: {
-      "email": "enrique.zapata@gmail.com"
-    }
-  });   
+    usuario: ""    
+  }); 
+  
+  const [usuarios, setUsuarios] = useState([]);
+  const [usuario, setUsuario] = useState([]);
 
   const [error, setError] = useState(false);
 
@@ -40,8 +38,9 @@ export default function TipoEquipo() {
     const getTipoEquipos = () => {
       obtenerTodos().
       then(r => {
-         console.log(r)
+         console.log('los tipos equipo',r)
          setTipoEquipos(r.data)
+         //setUsuario(r.data.usuario)
       }).catch(e => {
         console.log(e)
       })
@@ -76,6 +75,7 @@ export default function TipoEquipo() {
     guardar(tipoequipo)
     .then( r =>{
       setTipoEquipos([...tipoequipos, r.data])
+      setUsuario(r.data)
       changeError(false);  
       setLoading(false);
     }).catch(e =>{
@@ -132,9 +132,7 @@ export default function TipoEquipo() {
       _id: '',
       nombre: '',
       estado: true,
-      usuario: {
-        "email": "enrique.zapata@gmail.com"
-      }      
+      usuario: ""
     })
   }
 
@@ -162,7 +160,8 @@ export default function TipoEquipo() {
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">TipoEquipo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Usuario</th>
                 <th scope="col">Fecha Creación</th>
                 <th scope="col">Fecha Actualización</th>
                 <th scope="col"></th>
@@ -178,6 +177,7 @@ export default function TipoEquipo() {
                       <th scope="row">{ index + 1}</th>
                       <td>{item.nombre}</td>
                       <td>{item.estado ? 'Activo' : 'Inactivo'}</td>
+                      <td>{item.usuario.nombre}</td>
                       <td>{creacion}</td>
                       <td>{item.fechaActualizacion}</td>
                       <td>

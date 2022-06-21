@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Tabla from './Tabla'
 import { obtenerTodos } from '../../services/InventarioService';
+import Tabla from './Tabla'
 import Modal from './Modal';
 
 export default function Inventario() {
