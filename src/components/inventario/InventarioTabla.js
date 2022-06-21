@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Tabla({inventarios = []}) {
+export default function TablaInventario({ inventarios, marcas, usuarios, estados, tipoEquipos, openEditById}) {
     return (
         <div className="table-responsive">
             {inventarios.length == 0 ? 'No hay datos' : (

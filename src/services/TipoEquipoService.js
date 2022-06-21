@@ -1,7 +1,7 @@
 import TipoEquipo from "../components/tipoequipo/TipoEquipo";
 import { axiosConfig } from "../config/axiosConfig"
 
-export const obtenerTodos = () => {
+export const obtenerTodosTipoEquipos = () => {
   return axiosConfig.get(
     '/tiposequipo/user-activo' // Solo tipos de equipo activos
     //'/tiposequipo'//salian todos incluso los inactivos

@@ -1,7 +1,7 @@
 import Marca from "../components/marca/Marca";
 import { axiosConfig } from "../config/axiosConfig"
 
-export const obtenerTodos = () => {
+export const obtenerTodosMarcas = () => {
   return axiosConfig.get(
     '/marcas'
     //process.env.REACT_APP_BASE_URL+'/estados'

@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import { obtenerTodos, guardar, editarPorId } from '../../services/MarcaService';
+import { obtenerTodosMarcas, guardar, editarPorId } from '../../services/MarcaService';
 import Modal from './Modal';
 
 
@@ -20,7 +20,7 @@ export default function Marca() {
 
   useEffect(() =>{
     const getMarcas = () => {
-      obtenerTodos().
+      obtenerTodosMarcas().
       then(r => {
          console.log(r)
          setMarcas(r.data)

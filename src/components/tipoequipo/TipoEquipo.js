@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import { obtenerTodos, guardar, editarPorId } from '../../services/TipoEquipoService';
+import { obtenerTodosTipoEquipos, guardar, editarPorId } from '../../services/TipoEquipoService';
 import { obtenerTodosUsuarios } from '../../services/UsuarioService';
 import ModalTipoEquipo from './ModalTipoEquipo';
 
@@ -36,7 +36,7 @@ export default function TipoEquipo() {
 
   useEffect(() =>{
     const getTipoEquipos = () => {
-      obtenerTodos().
+      obtenerTodosTipoEquipos().
       then(r => {
          console.log('los tipos equipo',r)
          setTipoEquipos(r.data)

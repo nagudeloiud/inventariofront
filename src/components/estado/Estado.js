@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import { obtenerTodos, guardar, editarPorId } from '../../services/EstadoService';
+import { obtenerTodosEstados, guardar, editarPorId } from '../../services/EstadoService';
 import TablaModulos from '../iu/TablaModulos';
 import Modal from './Modal';
 
@@ -19,7 +19,7 @@ export default function Estado() {
 
   useEffect(() =>{
     const getEstados = () => {
-      obtenerTodos().
+      obtenerTodosEstados().
       then(r => {
          console.log(r)
          setEstados(r.data)
