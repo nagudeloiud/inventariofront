@@ -74,17 +74,22 @@ export default function Modal({marca, loading, closeModal, hidden, changeMarca, 
                 <option value={false}>Inactivo</option>
               </select>
             </div>
+
+
             <div className="modal-footer">
-            <div className={error ? 'alert alert-danger': 'd-none'} role="alert">
-              ¡Ha ocurrido un error!
-            </div>
+              <div className={error ? 'alert alert-danger': 'd-none'} role="alert">
+                ¡Ha ocurrido un error!
+              </div>
               <button 
                 type="button" 
-                className="btn btn-secondary" data-bs-dismiss="modal"
+                className="btn btn-secondary" 
+                data-bs-dismiss="modal"
                 onClick={closeModal}
               >
                 Close
               </button>
+
+
               {
                 loading ? (<button className="btn btn-primary" type="button" disabled>
                 <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -93,6 +98,7 @@ export default function Modal({marca, loading, closeModal, hidden, changeMarca, 
                     GuardarMarca
                   </button>)
               }
+              
             </div>
           </form>
             </div>

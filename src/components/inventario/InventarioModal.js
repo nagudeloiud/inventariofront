@@ -225,7 +225,7 @@ export default function ModalInventario({
                     <div className="col">    
                       <div className="mb-3">
                         <label htmlFor="message-text" className="col-form-label">
-                          Esatado:
+                          Estado:
                         </label>
                         <select
                           required

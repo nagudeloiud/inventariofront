@@ -55,6 +55,7 @@ export default function Marca() {
 
 
   const guardarMarca = () => { 
+    console.log('marca a grabar:  ', marca);
     guardar(marca)
     .then( r =>{
       setMarcas([...marcas, r.data])
@@ -199,8 +200,6 @@ export default function Marca() {
         error={error}
         add={add}
       /> 
-
-
 
     </div>
   )

@@ -22,18 +22,21 @@ export default function Inventario() {
   const [inventarios, setInventarios] = useState([]);
 
   const [inventario, setInventario] = useState({
-    serial: "",
-    modelo: "",
-    descripcion: "",
-    foto: null,
-    color: "",
-    fechaCompra: "",
-    precio: "",
-    usuario: "",
-    marca: "",
-    estado: "",
-    tipoEquipo: ""
+      _id: "",
+      modelo: "",
+      serial: "",
+      descripcion: "",
+      foto: "",
+      precio: "",
+      color: "",
+      marca: "",
+      usuario: "",
+      tipoEquipo: "",
+      estado: "",
   });
+
+
+
 
   const [error, setError] = useState(false);
 
@@ -215,7 +218,6 @@ export default function Inventario() {
       />
       <InventarioModal
         inventario={inventario}
-        changeInventario={changeInventario}
         marcas={marcas}
         usuarios={usuarios}
         tipoEquipos={tipoEquipos}
@@ -223,6 +225,7 @@ export default function Inventario() {
         loading={loading}
         closeModal={closeModal}
         hidden={hidden}
+        changeInventario={changeInventario}
         error={error}
         add={add}         
       />

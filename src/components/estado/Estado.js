@@ -6,13 +6,17 @@ import Modal from './Modal';
 export default function Estado() {
 
   const [estados, setEstados] = useState([]); //para obtener todos 
+
   const [estado, setEstado] = useState({      //para guardar o editar un estado
     _id: '',
     nombre: '',
     estado: true
   });   
+
   const [error, setError] = useState(false);
+
   const [hidden] = useState('hidden');
+  
   const [loading, setLoading] = useState(false);
 
 
